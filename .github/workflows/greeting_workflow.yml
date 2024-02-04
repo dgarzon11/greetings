@@ -9,23 +9,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3  # Suponiendo que v3 es compatible con Node.js 20
-    - uses: actions/setup-python@v3  # Suponiendo que v3 es compatible con Node.js 20
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-    # El resto de tu flujo de trabajo sigue igual
-
 
     - name: Run greeting script
       run: python greet.py
 
-    - name: Push changes
+    - name: Commit and push if there are changes
       run: |
-        git config --global user.email "dgarzon11@gmail.com"
-        git config --global user.name "dgarzon11"
-        git add .
-        git commit -m "Add today's greeting" -a || echo "No changes to commit"
-        git push --set-upstream origin HEAD:main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git add greetings.txt
+        git commit -m "Add today's greeting" || echo "No changes to commit"
+        git push
 
