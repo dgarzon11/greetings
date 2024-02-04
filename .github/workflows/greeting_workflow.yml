@@ -25,4 +25,4 @@ jobs:
         git config --global user.name "dgarzon11"
         git add greetings.txt
         git commit -m "Add today's greeting" || echo "No changes to commit"
-        git push
+        git push https://${{ secrets.GH_TOKEN }}@github.com/dgarzon11/greetings.git
