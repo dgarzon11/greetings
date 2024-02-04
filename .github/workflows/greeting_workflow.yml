@@ -1,15 +1,16 @@
-name: Daily Greeting
+name: Daily Greeting with Force Push
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Este cronograma es para ejecutar el script a medianoche UTC todos los días
+    - cron: '0 0 * * *'  # Ejecuta a la medianoche UTC todos los días
 
 jobs:
   greet:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -17,13 +18,17 @@ jobs:
         python-version: '3.x'
 
     - name: Run greeting script
-      run: python greet.py
+      run: python greet.py  # Asegúrate de que tu script se llame 'greet.py'
 
-    - name: Commit and push if there are changes
+    - name: Configure Git
       run: |
         git config --global user.email "you@example.com"
         git config --global user.name "Your Name"
-        git add greetings.txt
-        git commit -m "Add today's greeting" || echo "No changes to commit"
-        git push
 
+    - name: Commit changes
+      run: |
+        git add greetings.txt
+        git commit -m "Add today's greeting" -a || echo "No changes to commit"
+
+    - name: Force push changes
+      run: git push --force origin main
