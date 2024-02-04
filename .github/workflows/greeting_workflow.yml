@@ -22,7 +22,7 @@ jobs:
     - name: Commit and push if there are changes
       run: |
         git config --global user.email "dgarzon11@gmail.com"
-        git config --global user.name "Diego"
+        git config --global user.name "dgarzon11"
         git add greetings.txt
         git commit -m "Add today's greeting" || echo "No changes to commit"
         git push
