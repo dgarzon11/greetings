@@ -3,6 +3,7 @@ name: Daily Greeting with Force Push
 on:
   schedule:
     - cron: '0 0 * * *'  # Ejecuta a la medianoche UTC todos los días
+  workflow_dispatch:  # Permite el desencadenamiento manual del flujo de trabajo
 
 jobs:
   greet:
@@ -22,8 +23,8 @@ jobs:
 
     - name: Configure Git
       run: |
-        git config --global user.email "dgarzon11@gmail.com"
-        git config --global user.name "dgarzon11"
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
 
     - name: Commit changes
       run: |
