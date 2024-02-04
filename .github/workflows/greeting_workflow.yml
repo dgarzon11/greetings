@@ -9,10 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3  # Actualizado a una versión hipotética que soporta Node.js 16
-    - uses: actions/setup-python@v3  # Actualizado a una versión hipotética que soporta Node.js 16
+    - uses: actions/checkout@v3  # Suponiendo que v3 es compatible con Node.js 20
+    - uses: actions/setup-python@v3  # Suponiendo que v3 es compatible con Node.js 20
       with:
         python-version: '3.x'
+    # El resto de tu flujo de trabajo sigue igual
+
 
     - name: Run greeting script
       run: python greet.py
