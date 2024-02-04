@@ -19,10 +19,13 @@ jobs:
     - name: Run greeting script
       run: python greet.py
 
-    - name: Commit and push if there are changes
+    - name: Push changes
       run: |
         git config --global user.email "dgarzon11@gmail.com"
         git config --global user.name "dgarzon11"
-        git add greetings.txt
-        git commit -m "Add today's greeting" || echo "No changes to commit"
-        git push https://${{ secrets.GH_TOKEN }}@github.com/dgarzon11/greetings.git
+        git add .
+        git commit -m "Add today's greeting" -a || echo "No changes to commit"
+        git push --set-upstream origin HEAD:main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
